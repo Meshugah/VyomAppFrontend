@@ -2,6 +2,7 @@ import {Button, Form, FormGroup, Input, Label} from "reactstrap";
 import React from 'react';
 import axios from 'axios';
 import auth from "./auth";
+import {Link} from "@reach/router";
 
 
 const CreateAccount = () => {
@@ -43,12 +44,14 @@ const CreateAccount = () => {
                     <Input type="number" id="PhoneNumber" placeholder="10 digit number. No extension"/>
                 </FormGroup>
                 <Button className="create-account-button" color="success">Create Account</Button>
-                <Button color="link">Already have an account?</Button>
-            {/*    ^ this should just redirect to create login ^ */}
+                <Button color="link"><Link to="/login">Already have an account?</Link></Button>
             </Form>
         </div>
     )
 }
+
+
+
 
 
 export default CreateAccount;
