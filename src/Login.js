@@ -1,22 +1,53 @@
 import {Button, Form, FormGroup, Input, Label} from "reactstrap";
 import React from 'react';
+import axios from "axios";
+import auth from "./auth";
+import {navigate} from "@reach/router";
 
-const Login = () => {
-    return(
-        <div className="wrapper">
-            <Form className="login-form form-wrapper">
-                <FormGroup>
-                    <Label for="phoneNumber">Phone Number</Label>
-                    <Input type="number" id="phoneNumber" placeholder="10 digit number. No extension"/>
-                </FormGroup>
-                <FormGroup>
-                    <Label for="examplePassword">Password</Label>
-                    <Input type="password" id="examplePassword" placeholder="8 character password"/>
-                </FormGroup>
-                <Button className="create-account-button" color="success">Login</Button>
-            </Form>
-        </div>
-    )
+class Login extends React.Component {
+    constructor(props) {
+        super(props);
+        this.login = this.login.bind(this)
+    }
+
+    render() {
+        return (
+            <div className="wrapper">
+                <Form className="login-form form-wrapper" onSubmit={(e) => this.login(e)}>
+                    <FormGroup>
+                        <Label for="phoneNumber">Phone Number</Label>
+                        <Input type="number" id="phoneNumber" placeholder="10 digit number. No extension"/>
+                    </FormGroup>
+                    <FormGroup>
+                        <Label for="enterPassword">Password</Label>
+                        <Input type="password" id="enterPassword" placeholder="8 character password"/>
+                    </FormGroup>
+                    <Button className="create-account-button" color="success">Login</Button>
+                </Form>
+            </div>
+        )
+    }
+
+    login(e) {
+        e.preventDefault()
+        let request = {
+            password: document.getElementById('enterPassword').value,
+            phoneNumber: document.getElementById('phoneNumber').value
+        }
+        axios.post('http://localhost:3000/auth/login', request)
+            .then(response => {
+                // stores jwt
+                auth.login(response.data)
+
+                if (auth.isAuthenticated(response.data)) {
+                    navigate(`/call`) // TODO change this to
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            })
+
+    }
 }
 
 
