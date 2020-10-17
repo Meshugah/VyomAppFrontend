@@ -40,7 +40,7 @@ class Login extends React.Component {
                 auth.login(response.data)
 
                 if (auth.isAuthenticated(response.data)) {
-                    navigate(`/call`) // TODO change this to
+                    navigate(`/call`)
                 }
             })
             .catch(err => {
