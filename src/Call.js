@@ -1,7 +1,7 @@
 import {
+    Alert,
     Button,
     Col,
-    Container,
     Dropdown,
     DropdownItem,
     DropdownMenu,
@@ -16,24 +16,30 @@ import {
 import React from 'react';
 import axios from "axios";
 import {CountdownCircleTimer} from 'react-countdown-circle-timer'
+import './App.css'
 
 
 class Call extends React.Component {
     constructor(props) {
         super(props);
         this.toggle = this.toggle.bind(this);
+        this.toggleDropDown = this.toggleDropdown.bind(this);
         this.startCall = this.startCall.bind(this);
         this.timeDropDownChange = this.toggle.bind(this);
         this.state = {
+            visible: false,
             dropdownOpen: false,
             selectedTime: 0,
             value: 0,
             loading: false,
-            loadPage: 1
+            loadPage: 1,
+            alertVisible: true
         }
     }
 
-    toggle = () => this.setState({dropdownOpen: !this.state.dropdownOpen})
+    toggle = () => this.setState({visible: !this.state.visible})
+    toggleDropdown = () => this.setState({dropdownOpen: !this.state.dropdownOpen})
+    toggleAlert = () => this.setState({alertVisible: !this.state.alertVisible})
 
     callInfo = () => {
         return (
@@ -58,7 +64,7 @@ class Call extends React.Component {
                     <Col md={4}>
                         <FormGroup>
                             <Label for="phoneDropdown">Call Duration</Label>
-                            <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle} id="phoneDropdown">
+                            <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggleDropdown} id="phoneDropdown">
                                 <DropdownToggle caret>
                                     {this.state.selectedTime === 0 ? "Time" : this.state.selectedTime + " minutes"}
                                 </DropdownToggle>
@@ -105,10 +111,11 @@ class Call extends React.Component {
                                            required/>
                                 </FormGroup>
                             </Col>
+
                             <Col md={4}>
                                 <FormGroup>
                                     <Label for="phoneDropdown">Call Duration</Label>
-                                    <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle} id="phoneDropdown">
+                                    <Dropdown isOpen={this.state.visible} toggle={this.toggle} id="phoneDropdown">
                                         <DropdownToggle caret>
                                             {this.state.selectedTime === 0 ? "Time" : this.state.selectedTime + " minutes"}
                                         </DropdownToggle>
@@ -130,7 +137,7 @@ class Call extends React.Component {
                         </Row>
                         <Row>
                             <Col>
-                                <Button className="btn-block" color="success">{!this.state.loading ? "Call" :
+                                <Button className="btn-block" color="success" disabled={this.state.selectedTime === 0}>{!this.state.loading ? "Call" :
                                     <Spinner style={{width: '1rem', height: '1rem'}}/>}
                                 </Button>
                             </Col>
@@ -143,22 +150,40 @@ class Call extends React.Component {
             return (
                 <div className="wrapper">
                     <Form className="login-form form-wrapper">
-                        <Row>
+                        <Row className="mb-3">
                             <Col md={{size: 6, offset: 4}}>
                                 <CountdownCircleTimer
                                     isPlaying
                                     duration={this.state.selectedTime * 60}
-                                    colors={[
-                                        ['#3ba546', 0.33],
-                                        ['#3ba546', 0.33],
-                                        ['#3ba546', 0.33],
-                                    ]}
-                                >
-                                    {({remainingTime}) => remainingTime}
+                                    colors="#3ba546">
+                                    {
+                                        ({
+                                             remainingTime
+                                         }) => {
+                                            const minutes = Math.floor(remainingTime / 60)
+                                            const seconds = remainingTime % 60
+
+                                            return (
+                                                <div className="timer">
+                                                    <div className="text">Session</div>
+                                                    <div className="value">{`${minutes}:${seconds}`}</div>
+                                                    <div className="text">Time</div>
+                                                </div>
+                                            );
+                                        }
+                                    }
                                 </CountdownCircleTimer>
                             </Col>
                         </Row>
-                        <Button color="secondary" disabled>In Call</Button>
+                        <Row>
+                            <Alert color="success" isOpen={this.state.alertVisible} toggle={this.toggleAlert}>
+                                <h4 className="alert-heading">Well done!</h4>
+                                <p>
+                                    You're taking the first steps to your well being and we just wanted to say we're
+                                    happy for you!
+                                </p>
+                            </Alert>
+                        </Row>
                     </Form>
                 </div>
             )
@@ -175,6 +200,7 @@ class Call extends React.Component {
             phoneNumber: document.getElementById('PhoneNumber').value,
             callDuration: this.state.selectedTime,
         }
+        setTimeout(function(){
         axios.post('http://localhost:3000/users/call', request)
             .then(response => {
                 console.log(response)
@@ -182,7 +208,22 @@ class Call extends React.Component {
             .catch(err => {
                 console.log(err);
             })
+        }, 500);
     }
+
+    renderTime = ({remainingTime}) => {
+        if (remainingTime === 0) {
+            return <div className="timer">Too lale...</div>;
+        }
+
+        return (
+            <div className="timer">
+                <div className="text">Remaining</div>
+                <div className="value">{remainingTime}</div>
+                <div className="text">seconds</div>
+            </div>
+        );
+    };
 }
 
 

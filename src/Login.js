@@ -1,4 +1,4 @@
-import {Button, Col, Form, FormGroup, Input, Label, Row} from "reactstrap";
+import { Jumbotron ,Button, Col, Form, FormGroup, Input, Label, Row} from "reactstrap";
 import React from 'react';
 import axios from "axios";
 import auth from "./auth";
@@ -14,13 +14,17 @@ class Login extends React.Component {
         return (
             <div className="wrapper">
                 <Form className="login-form form-wrapper" onSubmit={(e) => this.login(e)}>
+                    <Jumbotron>
+                        <h5 className="display-4">Welcome Back!</h5>
+                        <p className="lead">We've got a new feature we're excited to share with you!</p>
+                    </Jumbotron>
                     <FormGroup>
                         <Label for="phoneNumber">Phone Number</Label>
-                        <Input type="number" id="phoneNumber" placeholder="10 digit number. No extension"/>
+                        <Input type="number" id="phoneNumber" placeholder="10 digit number. No extension" required/>
                     </FormGroup>
                     <FormGroup>
                         <Label for="enterPassword">Password</Label>
-                        <Input type="password" id="enterPassword" placeholder="8 character password"/>
+                        <Input type="password" id="enterPassword" placeholder="8 character password" required/>
                     </FormGroup>
                     <Row>
                         <Col>

@@ -5,7 +5,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: darkslategray;
+    background-color: #155724;
 }
 
 .form-wrapper {
@@ -18,12 +18,18 @@
     background-color: #ffffff;
 }
 
-/*todo update to use reactstrap*/
-.create-account-button {
-    margin-bottom: 2px;
+.timer {
+    font-family: "Helvetica Neue";
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 
-.timer {
-    margin-left: auto;
+.text {
+    color: #aaa;
+}
+
+.value {
+    font-size: 40px;
 }
