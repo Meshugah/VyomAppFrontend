@@ -16,6 +16,8 @@ import React from 'react';
 import axios from "axios";
 import auth from "./auth";
 import {navigate} from "@reach/router";
+import {CountdownCircleTimer} from 'react-countdown-circle-timer'
+
 
 class Call extends React.Component {
     constructor(props) {
@@ -169,7 +171,7 @@ class Call extends React.Component {
             phoneNumber: document.getElementById('PhoneNumber').value,
             callDuration: this.state.selectedTime,
         }
-        axios.post('http://localhost:3000/user/call', request)
+        axios.post('http://localhost:3000/users/call', request)
             .then(response => {
                 console.log(response)
             })
