@@ -1,3 +1,5 @@
+# What I haven't done yet
+
 1. Need to replace name with name from login and 'disabled' it.
 2. Todo need to add protected routes
   a. Not logged in redirect to register page
