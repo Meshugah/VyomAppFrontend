@@ -23,6 +23,7 @@
     "axios": "^0.20.0",
     "bootstrap": "^4.5.3",
     "react": "^16.14.0",
+    "react-countdown-circle-timer": "^2.3.7",
     "react-dom": "^16.14.0",
     "reactstrap": "^8.6.0"
   },
