@@ -1,4 +1,4 @@
-import {Button, Form, FormGroup, Input, Label} from "reactstrap";
+import {Button, Col, Form, FormGroup, Input, Label, Row} from "reactstrap";
 import React from 'react';
 import axios from "axios";
 import auth from "./auth";
@@ -22,7 +22,11 @@ class Login extends React.Component {
                         <Label for="enterPassword">Password</Label>
                         <Input type="password" id="enterPassword" placeholder="8 character password"/>
                     </FormGroup>
-                    <Button className="create-account-button" color="success">Login</Button>
+                    <Row>
+                        <Col>
+                            <Button className="btn-block" color="success">Login</Button>
+                        </Col>
+                    </Row>
                 </Form>
             </div>
         )

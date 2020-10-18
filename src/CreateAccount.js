@@ -1,6 +1,6 @@
-import {Button, Form, FormGroup, Input, Label} from "reactstrap";
+import {Badge, Button, Col, Form, FormGroup, Input, Label, Row, Alert} from "reactstrap";
 import React from 'react';
-import { navigate, Link } from "@reach/router"
+import {Link, navigate} from "@reach/router"
 import axios from "axios";
 import auth from "./auth";
 
@@ -9,31 +9,45 @@ class CreateAccount extends React.Component {
     constructor(props) {
         super(props);
         this.login = this.register.bind(this);
+        this.state = {
+            visible: true
+        }
     }
 
 
     render() {
         return (
             <div className="wrapper">
-                <Form className="login-form form-wrapper" onSubmit={(e) => this.register(e)}>
+                <Form className="login-form form-wrapper text-center" onSubmit={(e) => this.register(e)}>
+                    <Row className="mb-3">
+                        <Col className="text-center">
+                            <h1>Vyom<Badge color="success">Web</Badge></h1>
+                        </Col>
+                    </Row>
                     <FormGroup>
                         <Label for="Name">Name</Label>
-                        <Input type="text" id="Name" placeholder="Enter your full name"/>
+                        <Input type="text" id="Name" placeholder="Enter your full name" required/>
                     </FormGroup>
                     <FormGroup>
                         <Label for="Password">Password</Label>
-                        <Input type="password" id="Password" placeholder="8 character password"/>
+                        <Input type="password" id="Password" placeholder="8 character password" required/>
                     </FormGroup>
                     <FormGroup>
                         <Label for="PhoneNumber">Phone Number</Label>
-                        <Input type="number" id="PhoneNumber" placeholder="10 digit number. No extension"/>
+                        <Input type="number" id="PhoneNumber" placeholder="10 digit number. No extension" required/>
                     </FormGroup>
-                    <Button className="create-account-button" color="success">Create Account</Button>
+                    <Row>
+                        <Col>
+                            <Button className="btn-block" color="success">Create Account</Button>
+                        </Col>
+                    </Row>
                     <Button color="link"><Link to="/login">Already have an account?</Link></Button>
                 </Form>
             </div>
         )
     }
+
+    toggle = () => this.setState({visible: !this.state.visible})
 
     register(e) {
         e.preventDefault()

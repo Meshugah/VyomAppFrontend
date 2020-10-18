@@ -1,6 +1,7 @@
 import {
     Button,
     Col,
+    Container,
     Dropdown,
     DropdownItem,
     DropdownMenu,
@@ -14,8 +15,6 @@ import {
 } from "reactstrap";
 import React from 'react';
 import axios from "axios";
-import auth from "./auth";
-import {navigate} from "@reach/router";
 import {CountdownCircleTimer} from 'react-countdown-circle-timer'
 
 
@@ -129,9 +128,14 @@ class Call extends React.Component {
                                 </FormGroup>
                             </Col>
                         </Row>
-                        <Button color="success">{!this.state.loading ? "Call" :
-                            <Spinner style={{width: '1rem', height: '1rem'}}/>}
-                        </Button>
+                        <Row>
+                            <Col>
+                                <Button className="btn-block" color="success">{!this.state.loading ? "Call" :
+                                    <Spinner style={{width: '1rem', height: '1rem'}}/>}
+                                </Button>
+                            </Col>
+                        </Row>
+
                     </Form>
                 </div>
             )
@@ -145,9 +149,9 @@ class Call extends React.Component {
                                     isPlaying
                                     duration={this.state.selectedTime * 60}
                                     colors={[
-                                        ['#004777', 0.33],
-                                        ['#F7B801', 0.33],
-                                        ['#A30000', 0.33],
+                                        ['#3ba546', 0.33],
+                                        ['#3ba546', 0.33],
+                                        ['#3ba546', 0.33],
                                     ]}
                                 >
                                     {({remainingTime}) => remainingTime}
