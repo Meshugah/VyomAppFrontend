@@ -137,7 +137,8 @@ class Call extends React.Component {
                         </Row>
                         <Row>
                             <Col>
-                                <Button className="btn-block" color="success" disabled={this.state.selectedTime === 0}>{!this.state.loading ? "Call" :
+                                <Button className="btn-block" color="success"
+                                        disabled={this.state.selectedTime === 0}>{!this.state.loading ? "Call" :
                                     <Spinner style={{width: '1rem', height: '1rem'}}/>}
                                 </Button>
                             </Col>
@@ -200,14 +201,14 @@ class Call extends React.Component {
             phoneNumber: document.getElementById('PhoneNumber').value,
             callDuration: this.state.selectedTime,
         }
-        setTimeout(function(){
-        axios.post('http://localhost:3000/users/call', request)
-            .then(response => {
-                console.log(response)
-            })
-            .catch(err => {
-                console.log(err);
-            })
+        setTimeout(function () {
+            axios.post('http://localhost:3000/users/call', request)
+                .then(response => {
+                    console.log(response)
+                })
+                .catch(err => {
+                    console.log(err);
+                })
         }, 500);
     }
 
