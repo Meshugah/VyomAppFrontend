@@ -16,7 +16,7 @@ class Login extends React.Component {
                 <Form className="login-form form-wrapper" onSubmit={(e) => this.login(e)}>
                     <Jumbotron>
                         <h5 className="display-4">Welcome Back!</h5>
-                        <p className="lead">We've got a new feature we're excited to share with you!</p>
+                        <p className="lead">We've got a new feature we're excited to share with you. Login to check it out ✨</p>
                     </Jumbotron>
                     <FormGroup>
                         <Label for="phoneNumber">Phone Number</Label>

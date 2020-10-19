@@ -5,16 +5,16 @@ import {Router} from "@reach/router";
 import CreateAccount from "./CreateAccount";
 import Login from "./Login";
 import Call from "./Call";
+import ProtectedRoute from "./ProtectedRoute";
 
 
-const App = (props) => {
+const App = () => {
     return (
         <div>
             <Router>
                 <CreateAccount path="/"/>
                 <Login path="/login"/>
-                {/*todo need to add protected routes*/}
-                <Call path="/call"/>
+                <ProtectedRoute as={Call} path="/call"/>
             </Router>
         </div>
     );
