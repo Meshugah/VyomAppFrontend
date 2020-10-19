@@ -2,7 +2,7 @@ import {Badge, Button, Col, Form, FormGroup, Input, Label, Row, Alert} from "rea
 import React from 'react';
 import {Link, navigate} from "@reach/router"
 import axios from "axios";
-import auth from "./auth";
+import auth from "../Helpers/auth";
 
 
 class CreateAccount extends React.Component {

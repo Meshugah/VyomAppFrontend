@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import './CreateAccount'
+import './Components/CreateAccount'
 import {Router} from "@reach/router";
-import CreateAccount from "./CreateAccount";
-import Login from "./Login";
-import Call from "./Call";
-import ProtectedRoute from "./ProtectedRoute";
+import CreateAccount from "./Components/CreateAccount";
+import Login from "./Components/Login";
+import Call from "./Components/Call";
+import ProtectedRoute from "./Components/ProtectedRoute";
 
 
 const App = () => {

@@ -16,7 +16,7 @@ import {
 import React from 'react';
 import axios from "axios";
 import {CountdownCircleTimer} from 'react-countdown-circle-timer'
-import './App.css'
+import '../App.css'
 
 
 class Call extends React.Component {

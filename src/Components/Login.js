@@ -1,7 +1,7 @@
 import { Jumbotron ,Button, Col, Form, FormGroup, Input, Label, Row} from "reactstrap";
 import React from 'react';
 import axios from "axios";
-import auth from "./auth";
+import auth from "../Helpers/auth";
 import {navigate} from "@reach/router";
 
 class Login extends React.Component {
